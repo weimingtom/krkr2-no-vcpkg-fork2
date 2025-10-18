@@ -27,7 +27,8 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 ## For Xubuntu 20.04 and Xubuntu 25.04, desktop amd64, in VMWare (20.04 also support VirtualBox)  
 * $ sudo apt update
 * $ sudo apt install lftp gedit pkg-config make gcc g++ cmake
-* $ sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev libjpeg-dev libuchardet-dev libogg-dev libopus-dev
+* $ sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev libjpeg-dev libuchardet-dev 
+* (Not need) $ sudo apt install libogg-dev libopus-dev
 * $ make clean && make -j8 && make test
 * $ mkdir build && cd build && cmake .. && make -j8 && ./bin/krkr2/krkr2 && cd ..
 
@@ -45,4 +46,12 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * $ sudo pacman -S glew glfw boost fmt opencv spdlog openal gtk2 minizip opusfile uchardet 
 * $ make clean && make -j8 && make test
 * $ mkdir build && cd build && cmake .. && make -j8 && ./bin/krkr2/krkr2 && cd ..
+
+## For Debian 12.10.0, amd64, in VirtualBox
+* For VirtualBox, change checkbox and combobox to enable Hyper-V, PAE/NX, Nested VT-x/AMD-V
+* \# sudo apt update
+* \# sudo apt install lftp gedit pkg-config make gcc g++ cmake
+* \# sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev libjpeg-dev libuchardet-dev
+* \# make clean && make -j8 && make test
+* \# mkdir build && cd build && cmake .. && make -j8 && ./bin/krkr2/krkr2 && cd ..
 
