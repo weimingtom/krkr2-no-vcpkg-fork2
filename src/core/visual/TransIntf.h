@@ -49,7 +49,11 @@ public:
 //---------------------------------------------------------------------------
 class tTVPSimpleImageProvider : public iTVPSimpleImageProvider {
 public:
+#if defined(__MINGW32__)
+    tjs_error LoadImage_(
+#else
     tjs_error LoadImage(
+#endif	
         /*in*/ const tjs_char *name, /*in*/ tjs_int bpp,
         /*in*/ tjs_uint32 key,
         /*in*/ tjs_uint w,

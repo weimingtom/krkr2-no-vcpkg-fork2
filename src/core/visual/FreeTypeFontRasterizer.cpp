@@ -2,7 +2,7 @@
 #include "FreeTypeFontRasterizer.h"
 #include "LayerBitmapIntf.h"
 #include "FreeType.h"
-#if _WIN32
+#if _WIN32 && !defined(__MINGW32__)
 #include <corecrt_math_defines.h>
 #else
 #ifndef _USE_MATH_DEFINES

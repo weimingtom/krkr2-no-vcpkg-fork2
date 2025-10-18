@@ -29,7 +29,11 @@
 #include "TickCount.h"
 #include "WaveMixer.h"
 
+#if defined(__MINGW32__)
+//skip
+#else
 #define DWORD uint32_t
+#endif
 #ifdef TVP_SUPPORT_OLD_WAVEUNPACKER
 #include "oldwaveunpacker.h"
 #endif
@@ -49,6 +53,11 @@
 #include "Platform.h"
 #if !MY_USE_MINLIB
 #include <fmt/printf.h>
+#endif
+
+#if defined(__MINGW32__)
+#undef GetMessage
+#undef GetClassName
 #endif
 
 //---------------------------------------------------------------------------
@@ -2768,7 +2777,11 @@ bool tTJSNI_WaveSoundBuffer::FillBuffer(bool firstwrite, bool allowpause) {
 }
 
 //---------------------------------------------------------------------------
+#if defined(__MINGW32__)
+void tTJSNI_WaveSoundBuffer::ResetLastCheckedDecodePos(uint32_t pp) {
+#else
 void tTJSNI_WaveSoundBuffer::ResetLastCheckedDecodePos(DWORD pp) {
+#endif
     // set LastCheckedDecodePos and  LastCheckedTick
     // we shoud reset these values because the clock sources are
     // usually not identical.

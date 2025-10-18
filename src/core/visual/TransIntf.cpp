@@ -119,7 +119,11 @@ tjs_error tTVPSimpleOptionProvider::GetDispatchObject(iTJSDispatch2 **dsp) {
 //---------------------------------------------------------------------------
 // iTVPSimpleImageProvider implementation
 //---------------------------------------------------------------------------
+#if defined(__MINGW32__)
+tjs_error tTVPSimpleImageProvider::LoadImage_(
+#else
 tjs_error tTVPSimpleImageProvider::LoadImage(
+#endif
     /*in*/ const tjs_char *name, /*in*/ tjs_int bpp,
     /*in*/ tjs_uint32 key,
     /*in*/ tjs_uint w,
@@ -816,7 +820,11 @@ public:
             TVPThrowExceptionMessage(TVPSpecifyOption, TJS_W("rule"));
 
         iTVPScanLineProvider *scpro;
+#if defined(__MINGW32__)
+        er = imagepro->LoadImage_(rulename, 8, 0x02ffffff, src1w, src1h, &scpro);
+#else		
         er = imagepro->LoadImage(rulename, 8, 0x02ffffff, src1w, src1h, &scpro);
+#endif
         if(TJS_FAILED(er))
             TVPThrowExceptionMessage(TVPCannotLoadRuleGraphic, rulename);
 

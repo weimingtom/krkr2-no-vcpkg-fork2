@@ -30,6 +30,10 @@
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
 
+#if defined(__MINGW32__)
+#undef GetMessage
+#endif
+
 namespace TJS {
     //---------------------------------------------------------------------------
     // utility functions
@@ -1311,7 +1315,7 @@ namespace TJS {
                 spdlog::get("tjs2")->debug(e.GetMessage().AsStdString());
             } else {
                 DisplayExceptionGeneratedCode(codesave - CodeArea, ra_org);
-            }
+            }			
             TJS_eTJSScriptError(e.GetMessage(), this, codesave - CodeArea);
         } catch(exception &e) {
             if(tryCatch) {

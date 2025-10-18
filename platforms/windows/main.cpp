@@ -12,8 +12,13 @@
 #include "environ/ui/MainFileSelectorForm.h"
 USING_NS_CC;
 
+#if defined(__MINGW32__)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+                     LPSTR lpCmdLine, int nCmdShow) {
+#else
 int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                      LPTSTR lpCmdLine, int nCmdShow) {
+#endif					 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 

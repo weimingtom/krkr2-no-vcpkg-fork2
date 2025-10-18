@@ -11,6 +11,7 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * Arch Linux no audio, console output Chinese characters not good
 * Xubuntu SDL2 sound not good
 * Click file manager UI right column's top bar button to show popup path menu, then click items not well  
+* Msys2 console output Chinese characters not good
 
 ## TODO
 * Some code is changed to mine (see readme_android.txt, like core/environ/android/AndroidUtils.cpp and core/sound/win32/WaveMixer.cpp), not original code, need to be synchronized  
@@ -55,4 +56,25 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * \# sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev libjpeg-dev libuchardet-dev
 * \# make clean && make -j8 && make test
 * \# mkdir build && cd build && cmake .. && make -j8 && ./bin/krkr2/krkr2 && cd ..
+
+## (TODO, need test building again) For msys2, see readme_msys2.txt  
+* Check if install to c:/msys64, otherwise modify it in Makefile.msys2
+* $ pacman -Sy
+* $ pacman -S mingw-w64-x86_64-libpng
+* $ pacman -S mingw-w64-x86_64-libjpeg
+* $ pacman -S mingw-w64-x86_64-libwebp
+* $ pacman -S mingw-w64-x86_64-zlib
+* $ pacman -S mingw-w64-x86_64-glew
+* $ pacman -S mingw-w64-x86_64-gdb
+* $ pacman -S mingw-w64-x86_64-glfw
+* $ pacman -S mingw-w64-x86_64-opencv
+* $ pacman -S mingw-w64-x86_64-minizip
+* $ pacman -S mingw-w64-x86_64-boost
+* $ pacman -S mingw-w64-x86_64-fmt
+* $ pacman -S mingw-w64-x86_64-spdlog
+* $ pacman -S mingw-w64-x86_64-uchardet
+* $ mingw32-make.exe -f Makefile.msys2 clean
+* $ mingw32-make.exe -f Makefile.msys2 -j8
+* $ mingw32-make.exe -f Makefile.msys2 test
+* $ ./kirikiroid2.exe
 

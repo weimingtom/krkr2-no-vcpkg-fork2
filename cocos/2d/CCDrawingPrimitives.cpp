@@ -97,7 +97,11 @@ void init()
     lazy_init();
 }
 
+#if defined(__MINGW32__)
+void free_()
+#else
 void free()
+#endif
 {
     CC_SAFE_RELEASE_NULL(s_shader);
     s_initialized = false;

@@ -40,6 +40,10 @@ extern "C" {
 #include "TVPColor.h"
 #include "FontImpl.h"
 
+#if defined(__MINGW32__)
+#undef GetMessage
+#endif
+
 tTVPApplication *Application = new tTVPApplication;
 std::thread::id TVPMainThreadID;
 static tTJSCriticalSection _NoMemCallBackCS;

@@ -53,6 +53,10 @@
 #include "Platform.h"
 #include "ConfigManager/LocaleConfigManager.h"
 
+#if !defined(__MINWG32__)
+#undef GetMessage
+#endif
+
 //---------------------------------------------------------------------------
 // Script system initialization script
 //---------------------------------------------------------------------------

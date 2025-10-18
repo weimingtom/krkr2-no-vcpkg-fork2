@@ -36,7 +36,7 @@
 
 #include "spdlog/spdlog.h"
 
-#ifdef WIN32
+#if defined(WIN32) && !defined(__MINGW32__)
 #include <io.h>
 // posix io api
 inline unsigned int lseek64(int fileHandle, __int64 offset, int origin) {
@@ -50,7 +50,7 @@ inline unsigned int lseek64(int fileHandle, __int64 offset, int origin) {
 #define lseek64 lseek
 #endif
 
-#if defined(__APPLE__) || defined(__MACH__) || defined(__FreeBSD__)
+#if defined(__APPLE__) || defined(__MACH__) || defined(__FreeBSD__) || defined(__MINGW32__)
 #define lseek64 lseek
 #endif
 
@@ -167,8 +167,10 @@ void TVPListDir(const std::string &u8folder,
                 mode = S_IFDIR;
             else if(fs::is_regular_file(st))
                 mode = S_IFREG;
+#if !defined(__MINGW32__)				
             else if(fs::is_symlink(st))
                 mode = S_IFLNK;
+#endif				
             cb(name, mode);
         }
     } catch(const fs::filesystem_error &) {

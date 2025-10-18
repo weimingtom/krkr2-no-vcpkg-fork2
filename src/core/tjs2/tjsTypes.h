@@ -69,7 +69,7 @@ typedef ptrdiff_t tjs_offset;
 #define TJS_HOST_IS_BIG_ENDIAN 0
 #define TJS_HOST_IS_LITTLE_ENDIAN 1
 
-#if defined(_WIN32)
+#if defined(_WIN32) && !defined(__MINGW32__)
 
 #define TJS_I64_VAL(x) ((tjs_int64)(x##i64))
 #define TJS_UI64_VAL(x) ((tjs_uint64)(x##i64))

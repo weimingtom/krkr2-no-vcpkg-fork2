@@ -29,6 +29,10 @@
 #include <fmt/format.h>
 #endif
 
+#if !defined(__MINWG32__)
+#undef GetMessage
+#endif
+
 extern bool TVPStartupSuccess;
 
 //---------------------------------------------------------------------------

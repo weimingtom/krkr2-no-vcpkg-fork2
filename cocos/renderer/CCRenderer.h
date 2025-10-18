@@ -102,7 +102,11 @@ public:
     /**Clear all rendered commands.*/
     void clear();
     /**Realloc command queues and reserve with given size. Note: this clears any existing commands.*/
+#if defined(__MINGW32__)
+    void realloc_(size_t reserveSize);
+#else
     void realloc(size_t reserveSize);
+#endif	
     /**Get a sub group of the render queue.*/
     std::vector<RenderCommand*>& getSubQueue(QUEUE_GROUP group) { return _commands[group]; }
     /**Get the number of render commands contained in a subqueue.*/

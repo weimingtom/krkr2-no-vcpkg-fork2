@@ -1090,7 +1090,11 @@ void Director::reset()
 #endif
 //it will crash clang static analyzer so hide it if __clang_analyzer__ defined
 #ifndef __clang_analyzer__
+#if defined(__MINGW32__)
+    DrawPrimitives::free_();
+#else
     DrawPrimitives::free();
+#endif	
 #endif
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #pragma GCC diagnostic warning "-Wdeprecated-declarations"

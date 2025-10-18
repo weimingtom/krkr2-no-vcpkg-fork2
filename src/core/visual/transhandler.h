@@ -139,7 +139,11 @@ public:
 // image loader
 class iTVPSimpleImageProvider {
 public:
+#if defined(__MINGW32__)
+    virtual tjs_error LoadImage_(
+#else
     virtual tjs_error LoadImage(
+#endif
         /*in*/ const tjs_char *name, /*in*/ tjs_int bpp,
         /*in*/ tjs_uint32 key,
         /*in*/ tjs_uint w,

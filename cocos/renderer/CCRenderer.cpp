@@ -141,7 +141,11 @@ void RenderQueue::clear()
     }
 }
 
+#if defined(__MINGW32__)
+void RenderQueue::realloc_(size_t reserveSize)
+#else
 void RenderQueue::realloc(size_t reserveSize)
+#endif
 {
     for(int i = 0; i < QUEUE_COUNT; ++i)
     {

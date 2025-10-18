@@ -13,7 +13,7 @@
 #include "tjsMath.h"
 #include <ctime>
 
-#ifdef _WIN32
+#if defined(_WIN32) && !defined(__MINGW32__)
 #include <corecrt_math_defines.h>
 #ifndef TJS_NO_MASK_MATHERR
 #include <cfloat>
