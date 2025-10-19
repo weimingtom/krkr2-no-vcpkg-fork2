@@ -237,3 +237,30 @@ Thread 1 "kirikiroid2" received signal SIGBUS, Bus error.
 #67 0x007172f8 in cocos2d::Application::run() (this=0xf5e968) at cocos/platform/linux/CCApplication-linux.cpp:88
 #68 0x0002a924 in main(int, char**) (argc=1, argv=0xfffef294) at ./platforms/linux/main.cpp:25
 
+
+
+
+
+C:\work\krkr2-no-vcpkg-fork2\src\core\base\TextStream.cpp
+
+                // 压缩流
+                if(size < 3 + 2 + 16)
+                    TVPThrowExceptionMessage(TVPUnsupportedCipherMode, name);
+
+                // 读压缩大小和解压大小
+                std::uint8_t *ptr = raw.data() + 5;
+111---->                std::uint64_t compressed =
+                    *reinterpret_cast<std::uint64_t *>(ptr);
+                ptr += 8;
+                std::uint64_t uncompressed =
+                    *reinterpret_cast<std::uint64_t *>(ptr);
+                ptr += 8;
+				
+				
+https://stackoverflow.com/questions/26158510/gcc-float-pointer-casting-in-c-causing-sigbus-error
+
+const uint8_t *data = ...;
+type value;
+memcpy(&value, data, sizeof value);
+
+				
