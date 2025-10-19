@@ -12,6 +12,7 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * Xubuntu SDL2 sound not good
 * Click file manager UI right column's top bar button to show popup path menu, then click items not well  
 * Msys2 console output Chinese characters not good
+* RPI4 running failed, SIGBUS
 
 ## TODO
 * Some code is changed to mine (see readme_android.txt, like core/environ/android/AndroidUtils.cpp and core/sound/win32/WaveMixer.cpp), not original code, need to be synchronized  
