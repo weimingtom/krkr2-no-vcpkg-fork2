@@ -78,3 +78,10 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * $ mingw32-make.exe -f Makefile.msys2 test
 * $ ./kirikiroid2.exe
 
+## (Running failed, SIGBUS) For Raspberry Pi OS 2023-05-03 Raspios Bullseye (Debian 11), arm32 (armhf), in Raspberry Pi 4B
+* $ sudo apt update
+* $ sudo apt install lftp gedit pkg-config make gcc g++ cmake
+* $ sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev libjpeg-dev libuchardet-dev
+* $ make clean && make -j4 && make test
+* $ mkdir build && cd build && cmake .. && make -j4 && ./bin/krkr2/krkr2 && cd ..
+
