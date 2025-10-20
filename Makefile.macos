@@ -1,202 +1,65 @@
-#sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev libturbojpeg0-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev
-
-#src/core/environ/Application.cpp
-#ExtractFileDir
-
-#FIXME:not used
-#libavfilter-dev libavutil-dev 
-
-#FIXME:not used
-#src/core/environ/XP3ArchiveRepack.cpp
-
-#not used libminizip-dev
-
-#src/core/sound/VorbisWaveDecoder.cpp
-#sudo apt install libvorbis-dev
-
-#src/core/base/7zArchive.cpp
-#-DMY_USE_LIB7ZIP=0
-
-#src/core/visual/LoadJXR.cpp
-#sudo apt install libjxr-dev
-#/usr/include/jxrlib/JXRGlue.h:99:13: error: expected initializer before ‘GUID_PKPixelFormatDontCare’
-#not solve
-#-DMY_USE_LIBJXR=0
-
-#src/core/visual/LoadWEBP.cpp
-#sudo apt install libwebp-dev
-
-#src/core/visual/LoadBPG.cpp
-#-DMY_USE_LIBBPG=0
-#libbpg-0.9.8.tar.gz
-
-#src/core/movie/ffmpeg/*.*
-#sudo apt install libavfilter-dev
-#-DMY_USE_FFMPEG=0
-
-#FIXME: remove ./src/core/external
-
-#(done) src/core/visual/ARM/tvpgl_arm.cpp
-#???? if 0
-
-#sudo apt install libboost-locale-dev
-#sudo apt install libfmt-dev
-#sudo apt install libavutil-dev
-
-#sudo apt install libopencv-dev
-#src/core/visual/ogl/RenderManager_ogl.cpp
-
-#src/core/visual/LoadJPEG.cpp
-#sudo apt install libturbojpeg0-dev
-
-#sudo apt install liblz4-dev
-#(done) src/core/visual/RenderManager.cpp
-#///usr/include/opencv4/opencv2/features2d.hpp:114:47: error: ‘KeyPoint’ was not declared in this scope; did you mean ‘Point’?
-#(TODO:)solve method, remove -I./src/core/external/opencv-2.4.13 and remove ./src/core/external/opencv-2.4.13/*.*
-##include <opencv2/opencv.hpp>
-##include <opencv2/features2d/features2d.hpp>
-
-#src/core/utils/minizip/ioapi.o
-#src/core/utils/minizip/unzip.o
-#(FIXME:)src/core/utils/minizip/zip.c
-
-#src/core/tjs2/*.tab.cpp, gen.zip
-
-#sudo apt install libspdlog-dev
-#sudo apt install libopenal-dev
-
-#(done) src/core/environ/android/AndroidUtils.cpp
-#src/core/environ/android/AndroidUtils add if defined(ANDROID)
-
-#(done) src/core/environ/cocos2d/MainScene.cpp
-#need keep <cocos2d-x/network/headers>
-
-#sudo apt install libgtk2.0-dev
-
-#src/core/environ/ui/SeletListForm.o->src/core/environ/ui/SelectListForm.o
-
-#(done)src/core/environ/ui/extension/ActionExtension.cpp
-#need keep <cocos2d-x/network/headers>
-
-#(done)src/core/environ/DumpSend.cpp
-#remove <cocos2d-x/network/HttpRequest.h/HttpClient.h>
-
-#sudo apt install libarchive-dev
-#(done) src/core/base/UtilStreams.cpp
-#remove unrarsrc-6.0.7.tar.gz dep
-
-#(done) src/core/base/ZIPArchive.cpp
-#(modified <cocos2d-x/external/unzip/ioapi.h> cause compiling failed)
-#static zlib_filefunc64_32_def zipfunc = {
-
-#FIXME:??? sudo apt install libminizip-dev
-#FIXME:(? not used cocos2d-x external unzip) 
-#./src/core/utils/minizip/zip.c
-
-#sudo apt install libopusfile-dev
+##CC  := /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
+##CPP := /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
+##AR  := /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cru
+###/usr/bin/ar cq
+##RANLIB := /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
 
 
-
-
-
-
-#xubuntu 20.04 64bit
-#sudo apt install libglew-dev libfreetype-dev libglfw3-dev
-
-#/usr/include/GLFW/glfw3.h
-
-#0: pc
-#1: miyoo a30 and rg28xx
-#2: trimui smart pro
-#3: trimui brick
-MIYOO := 0
-#sudo apt install libglfw3-dev libfreetype-dev
-#cocos/2d/CCFontFreeType.h
-
-#tvpgl_arm.cpp: && !defined(LINUX)
-#CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-#rw |= O_BINARY;
-#defined(LINUX)
-#t = __strftime_fmt_1(&buf, &k, *f, tm);
-#b src/core/tjs2/tjsConfig.cpp:2494
-#b src/core/tjs2/tjsConfig.cpp:2512
-#b src/core/tjs2/tjsConfig.cpp:1986
-
-
-ifeq ($(MIYOO),3)
-CC = /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-gcc
-CPP := /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-g++
-AR := /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-ar cru
-RANLIB := /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-ranlib 
-else ifeq ($(MIYOO),2)
-CC = /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-gcc
-CPP := /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-g++
-AR := /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-ar cru
-RANLIB := /home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-ranlib 
-else ifeq ($(MIYOO),1)
-CC = /home/wmt/work_a30/gcc-linaro-7.5.0-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
-CPP := /home/wmt/work_a30/gcc-linaro-7.5.0-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
-AR := /home/wmt/work_a30/gcc-linaro-7.5.0-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-ar cru
-RANLIB := /home/wmt/work_a30/gcc-linaro-7.5.0-arm-linux-gnueabihf/bin/arm-linux-gnueabihf-ranlib 
-else
-CC  := gcc
-CPP := g++
+CC  := cc
+CPP := c++
 AR  := ar cru
 RANLIB := ranlib
-endif
 RM := rm -rf
 
 CPPFLAGS := 
-CPPFLAGS += -I.   
+CPPFLAGS += -I.
 #CPPFLAGS += -g -O2
-#CPPFLAGS += -g3 -O0
-
-ifeq ($(MIYOO),3)
-#trimui brick
-CPPFLAGS += -DUSE_APP_WIDTH=1024
-CPPFLAGS += -DUSE_APP_HEIGHT=768
-CPPFLAGS += -DUSE_NO_GLFW=1
-CPPFLAGS += -DUSE_ROTATE90=0
-CPPFLAGS += -g0 -O3
-else ifeq ($(MIYOO),2)
-#trimui smart pro
-CPPFLAGS += -DUSE_APP_WIDTH=1280
-CPPFLAGS += -DUSE_APP_HEIGHT=720
-CPPFLAGS += -DUSE_NO_GLFW=1
-CPPFLAGS += -DUSE_ROTATE90=0
-CPPFLAGS += -g0 -O3
-else ifeq ($(MIYOO),1)
-#miyoo a30 and rg28xx
-CPPFLAGS += -DUSE_APP_WIDTH=640
-CPPFLAGS += -DUSE_APP_HEIGHT=480
-CPPFLAGS += -DUSE_NO_GLFW=1
-CPPFLAGS += -DUSE_ROTATE90=1
-CPPFLAGS += -g0 -O3
-else
-#pc
-CPPFLAGS += -DUSE_APP_WIDTH=640
-CPPFLAGS += -DUSE_APP_HEIGHT=480
-CPPFLAGS += -DUSE_NO_GLFW=0 -DUSE_SHADER_PRECISION=1
-#if PC use OpenGLES to replace OpenGL, need USE_SHADER_PRECISION
-#cocos2d-x debug info [cocos2d: 0:1(1): error: No precision specified in this scope for type `mat4'
-CPPFLAGS += -DUSE_ROTATE90=0
 CPPFLAGS += -g3 -O0
-endif
+
+###############
+#pc
+#CPPFLAGS += -DWIN32 
+#CPPFLAGS += -DCC_STATIC #-D_USRDLL  # see CCPlatformDefine-win32.h, CC_DLL
+#CPPFLAGS += -D_DEBUG -D_WINDOWS -D_LIB
+#CPPFLAGS += -DCOCOS2DXWIN32_EXPORTS -DGL_GLEXT_PROTOTYPES -DCOCOS2D_DEBUG=1
+#CPPFLAGS += -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_WARNINGS -D_USE3DDLL -D_EXPORT_DLL_
+#CPPFLAGS += -D_USRSTUDIODLL -D_USREXDLL -D_USEGUIDLL
+#CPPFLAGS += -DCC_ENABLE_CHIPMUNK_INTEGRATION=1 -DPROTOBUF_USE_DLLS -DLIBPROTOBUF_EXPORTS 
+#CPPFLAGS += -DVC_EXTRALEAN -DGLEW_STATIC
 
 CPPFLAGS += -DCC_ENABLE_BOX2D_INTEGRATION=0 
 CPPFLAGS += -DCC_USE_PHYSICS=0 
+###############
 
-#3.17.2
-CPPFLAGS += -DCC_USE_3D_PHYSICS=0 -DCC_ENABLE_BULLET_INTEGRATION=0 -DCC_USE_NAVMESH=0
+###############
+CPPFLAGS += -D_DEBUG  #???
+#macos
+CPPFLAGS += -DCC_ENABLE_BOX2D_INTEGRATION=0 
+CPPFLAGS += -DCC_ENABLE_CHIPMUNK_INTEGRATION=1 
+CPPFLAGS += -DCC_TARGET_OS_MAC 
+CPPFLAGS += -DCP_USE_CGPOINTS=0 
+CPPFLAGS += -DUSE_FILE32API 
+#CPPFLAGS += -std=c++11 
+CPPFLAGS += -Wno-deprecated-declarations 
+#CPPFLAGS += -Wno-reorder 
+CPPFLAGS += -stdlib=libc++ 
+#CPPFLAGS += -g 
+#CPPFLAGS += -Wall 
+CPPFLAGS += -DCOCOS2D_DEBUG=1 
+#CPPFLAGS += -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk 
 
-#CPPFLAGS += -DCC_USE_WEBP=1
-CPPFLAGS += -DCC_USE_WEBP=0
-CPPFLAGS += -DCC_USE_TIFF=0
-#if USE_FONTCONFIG_LIB
+# mac black screen bug
+#CPPFLAGS += MY_USE_MAC_BLACK_SCREEN_BUG
 
-CPPFLAGS += -DGLFW_DLL 
-CPPFLAGS += -DLINUX 
-CPPFLAGS += -DCOCOS2D_DEBUG=1
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6/cocos 
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6 
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6/deprecated 
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6/cocos/platform 
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6/extensions 
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6/external 
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6/external/glfw3/include/mac 
+#CPPFLAGS += -I/Users/macmini/cmake_macos/cocos2d-x-3.6/external/zlib/include
+###############
 
 CPPFLAGS += -DMY_USE_FREESERIF=1
 CPPFLAGS += -DMY_USE_UIBUTTON_SETTITLECOLOR=1
@@ -317,57 +180,11 @@ CPPFLAGS += -DTJS_TEXT_OUT_CRLF
 
 
 
-
-#CPPFLAGS += -I/usr/include/webp
-#CPPFLAGS += -I/usr/include/i386-linux-gnu 
-#CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/include/GLFW 
-#CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/local/include/GLFW 
-
-ifeq ($(MIYOO),3)
-CPPFLAGS += -I/home/wmt/work_trimui/usr/include
-CPPFLAGS += -I/home/wmt/work_trimui/usr/include/webp
-CPPFLAGS += -I/home/wmt/work_trimui/usr/include/freetype2
-else ifeq ($(MIYOO),2)
-CPPFLAGS += -I/home/wmt/work_trimui/usr/include
-CPPFLAGS += -I/home/wmt/work_trimui/usr/include/webp
-CPPFLAGS += -I/home/wmt/work_trimui/usr/include/freetype2
-else ifeq ($(MIYOO),1)
-CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/include
-CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/include/webp
-CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/include/freetype2
-else
-#xubuntu 20
-#sudo apt install libopusfile-dev libgtk2.0-dev libopencv-dev libglfw3-dev libpng-dev zlib1g-dev libjpeg-dev libfreetype-dev libbz2-dev
-CPPFLAGS += -I/usr/include
-CPPFLAGS += -I/usr/include/webp
-CPPFLAGS += -I/usr/include/freetype2
-CPPFLAGS += -I/usr/include/GLFW
-CPPFLAGS += -I/usr/include/opencv4
-
-CPPFLAGS += -I/usr/include/gtk-2.0 -I/usr/include/glib-2.0 
-CPPFLAGS += -I/usr/lib/x86_64-linux-gnu/glib-2.0/include 
-CPPFLAGS += -I/usr/include/cairo -I/usr/include/pango-1.0
-CPPFLAGS += -I/usr/include/harfbuzz
-CPPFLAGS += -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include
-CPPFLAGS += -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/atk-1.0
-#Fedora41
-CPPFLAGS += -I/usr/lib64/glib-2.0/include
-CPPFLAGS += -I/usr/lib64/gtk-2.0/include
-#Raspberry Pi 4
-CPPFLAGS += -I/usr/lib/arm-linux-gnueabihf/glib-2.0/include
-CPPFLAGS += -I/usr/lib/arm-linux-gnueabihf/gtk-2.0/include
-#VisionFive2
-CPPFLAGS += -I/usr/lib/riscv64-linux-gnu/glib-2.0/include  
-CPPFLAGS += -I/usr/lib/riscv64-linux-gnu/gtk-2.0/include  
-
-CPPFLAGS += -I/usr/include/opus
-
-#CPPFLAGS += -I/usr/include/jxrlib
-
-CPPFLAGS += -I/usr/include/uchardet
-endif
-
-
+CPPFLAGS += -Iexternal_macos/include
+CPPFLAGS += -Iexternal_macos/include/webp
+CPPFLAGS += -Iexternal_macos/include/freetype2
+CPPFLAGS += -Iexternal_macos/include/GLFW
+###########
 
 LDFLAGS := 
 #LDFLAGS += -lGLU 
@@ -382,64 +199,79 @@ LDFLAGS :=
 #LDFLAGS += -lcurl 
 #LDFLAGS += -lX11 
 
-LDFLAGS += -lfreetype 
-#-lbz2
-#NOTE: -lbz2 is not necessary for PC xubuntu 20.04
-LDFLAGS += -lpthread 
-LDFLAGS += -lz 
-LDFLAGS += -ljpeg 
-LDFLAGS += -lpng 
-#LDFLAGS += -lGLESv2 -lEGL
+#LDFLAGS += -lfreetype -lbz2 
+#LDFLAGS += -lpthread 
+#LDFLAGS += -lz 
+#LDFLAGS += -ljpeg 
+#LDFLAGS += -lpng 
+##LDFLAGS += -lGLESv2 -lEGL
 
-#kirikiroid2
-LDFLAGS += -latomic
-LDFLAGS += -lSDL2
-
-#for krkr2
-#LDFLAGS += -lboost_locale
-LDFLAGS += -lfmt
-#LDFLAGS += -lavcodec -lavformat -lavfilter -lswscale -lswresample
-#LDFLAGS += -lavutil
-
-# In ArchLinux, using pkg-config will cause linking failed 
-#LDFLAGS += `pkg-config --libs opencv4`
-LDFLAGS += -lopencv_imgproc -lopencv_core
-
-#LDFLAGS += -lturbojpeg
-LDFLAGS += -llz4
-LDFLAGS += -lspdlog
-LDFLAGS += -lopenal
-LDFLAGS += `pkg-config --libs gtk+-2.0`
-LDFLAGS += -larchive
-LDFLAGS += -lopusfile
-LDFLAGS += -lwebp
-#LDFLAGS += -ljpegxr -ljxrglue
-LDFLAGS += -lvorbisfile -lvorbis -logg
-
-LDFLAGS += -luchardet 
-LDFLAGS += -lboost_locale  #for boost::locale::conv::to_utf
-#/usr/lib/x86_64-linux-gnu/libboost_locale.a, need sudo apt install libboost-locale-dev
-
-
-ifeq ($(MIYOO),3)
-#trimui brick replace glfw3 with EGL
-LDFLAGS += -lIMGegl -lsrv_um -lusc -lglslcompiler -L/home/wmt/work_trimui/usr/lib
-else ifeq ($(MIYOO),2)
-#trimui smart pro replace glfw3 with EGL
-LDFLAGS += -lIMGegl -lsrv_um -lusc -lglslcompiler -L/home/wmt/work_trimui/usr/lib
-else ifeq ($(MIYOO),1)
-#miyoo a30 replace glfw3 with EGL
-LDFLAGS += -L/home/wmt/work_a30/staging_dir/target/usr/lib
-else
 #xubuntu 16, need glfw3 and EGL
 #sudo apt install libglfw3-dev libpng-dev zlib1g-dev libjpeg-dev libfreetype-dev libbz2-dev
-LDFLAGS += -lglfw #cocos2dx/platform/linux/CCEGLView.cpp
+#LDFLAGS += -lglfw3    #cocos2dx/platform/linux/CCEGLView.cpp
+#LDFLAGS += -lglew32 -lwebp -ljpeg -lpng -ltiff -lz -lglu32 -lopengl32 -lwinmm -lgdi32 -lcomdlg32 -lavicap32 -lws2_32 -lmingw32 -lpsapi -ladvapi32  -lshell32 -lwinmm -lgdi32  -lm  -lws2_32 -lstdc++
 
-#Xubuntu 20.04 PC version
-#sudo apt install libglew-dev
-LDFLAGS += -lGLEW -lGLU -lGL
-endif
+###############
+#macos
+#LDFLAGS += ../../lib/libcocos2d.a 
+#LDFLAGS += ../../../external/curl/prebuilt/mac/libcrypto.a 
+#LDFLAGS += ../../../external/curl/prebuilt/mac/libssl.a 
+#LDFLAGS += ../../../external/curl/prebuilt/mac/libcurl.a 
+#LDFLAGS += ../../../external/glfw3/prebuilt/mac/libglfw3.a
+LDFLAGS += external_macos/lib/libglfw3.a 
+#LDFLAGS += ../../../external/zlib/prebuilt/mac/libz.a 
+#LDFLAGS += ../../lib/libunzip.a 
+#LDFLAGS += ../../../external/jpeg/prebuilt/mac/libjpeg.a 
+LDFLAGS += external_macos/lib/libjpeg.a 
+#LDFLAGS += ../../../external/png/prebuilt/mac/libpng.a 
+LDFLAGS += external_macos/lib/libpng.a 
+#LDFLAGS += ../../../external/tiff/prebuilt/mac/libtiff.a 
+LDFLAGS += external_macos/lib/libtiff.a
+#LDFLAGS += ../../lib/libtinyxml2.a 
+#LDFLAGS += ../../../external/freetype2/prebuilt/mac/libfreetype.a 
+LDFLAGS += external_macos/lib/libfreetype.a
+#LDFLAGS += ../../../external/websockets/prebuilt/mac/libwebsockets.a 
+#LDFLAGS += ../../../external/curl/prebuilt/mac/libcrypto.a 
+#LDFLAGS += ../../../external/curl/prebuilt/mac/libssl.a 
+#LDFLAGS += ../../../external/curl/prebuilt/mac/libcurl.a 
+#LDFLAGS += ../../lib/libxxhash.a 
+LDFLAGS += -framework Cocoa 
+LDFLAGS += -framework AGL 
+LDFLAGS += -framework OpenGL 
+LDFLAGS += -framework OpenAL 
+LDFLAGS += -framework AudioToolbox 
+LDFLAGS += -framework QuartzCore 
+LDFLAGS += -framework ApplicationServices 
+LDFLAGS += -framework IOKit 
+LDFLAGS += -framework Foundation 
+#LDFLAGS += ../../../external/webp/prebuilt/mac/libwebp.a 
+LDFLAGS += external_macos/lib/libwebp.a 
+#LDFLAGS += ../../../external/chipmunk/prebuilt/mac/libchipmunk.a 
+LDFLAGS += external_macos/lib/libz.a 
 
+LDFLAGS += external_macos/lib/libSDL2.a 
+
+#LDFLAGS += -framework AVFoundation 
+#AudioUnit or AVFoundation
+#SDL2, AudioObjectAddPropertyListener
+#
+# SDL2-2.24.0
+# $ ./configure --disable-video-metal
+# 
+LDFLAGS += -lm -liconv  
+LDFLAGS += -Wl,-framework,CoreAudio 
+LDFLAGS += -Wl,-framework,AudioToolbox 
+LDFLAGS += -Wl,-weak_framework,CoreHaptics 
+LDFLAGS += -Wl,-weak_framework,GameController 
+LDFLAGS += -Wl,-framework,ForceFeedback 
+LDFLAGS += -lobjc 
+LDFLAGS += -Wl,-framework,CoreVideo 
+LDFLAGS += -Wl,-framework,Cocoa 
+LDFLAGS += -Wl,-framework,Carbon 
+LDFLAGS += -Wl,-framework,IOKit 
+LDFLAGS += -Wl,-weak_framework,QuartzCore 
+LDFLAGS += -Wl,-weak_framework,Metal
+#############
 
 OBJS := 
 
@@ -531,11 +363,12 @@ OBJS += cocos/platform/CCSAXParser.o
 OBJS += cocos/platform/CCThread.o
 OBJS += cocos/platform/CCImage.o
 
-OBJS += cocos/platform/linux/CCApplication-linux.o
-OBJS += cocos/platform/linux/CCCommon-linux.o
-OBJS += cocos/platform/linux/CCDevice-linux.o
-OBJS += cocos/platform/linux/CCFileUtils-linux.o
-OBJS += cocos/platform/linux/CCStdC-linux.o
+OBJS += cocos/platform/mac/CCApplication-mac.o
+OBJS += cocos/platform/mac/CCCommon-mac.o
+OBJS += cocos/platform/mac/CCDevice-mac.o
+OBJS += cocos/platform/apple/CCFileUtils-apple.o
+OBJS += cocos/platform/apple/CCLock-apple.o
+OBJS += cocos/platform/apple/CCThread-apple.o
 
 OBJS += cocos/platform/desktop/CCGLViewImpl-desktop.o
 
@@ -1330,58 +1163,20 @@ kirikiroid2: cocos2dx.a $(KIRIKIROID2_OBJS)
 %.o : %.cc
 	$(CPP) $(CPPFLAGS2) $(CPPFLAGS) -o $@ -c $<
 
+%.o : %.mm
+	$(CPP) $(CPPFLAGS2) $(CPPFLAGS) -o $@ -c $<
+
 %.o : %.c
 	$(CC) $(CPPFLAGS) -o $@ -c $<
 	
 test:
 	./kirikiroid2
 
+#(cd ./project/Resources; ./kirikiroid2;)
+#./project/Resources/kirikiroid2
+
 debug:
-	gdb ./kirikiroid2
+	lldb ./kirikiroid2
 
-#b Button::setTitleColor
-
-#search Trying to read XP3, SystemInformationFrom
-#b XP3Archive.cpp:359
-
-#
-##0  tTVPXP3Archive::Init
-#    at src/core/base/XP3Archive.cpp:359
-##1  tTVPXP3Archive::tTVPXP3Archive
-#    at src/core/base/XP3Archive.cpp:561
-##2  tTVPXP3Archive::Create
-#    at src/core/base/XP3Archive.cpp:580
-##3  TVPOpenArchive
-#    at src/core/base/win32/StorageImpl.cpp:743
-##4  TVPCheckArchive
-#    at src/core/base/win32/StorageImpl.cpp:756
-##5  TVPMainFileSelectorForm::onCellClicked (
-#    at src/core/environ/ui/MainFileSelectorForm.cpp:214
-#
-
-#MainFileSelctorForm.cpp
-#void TVPMainFileSelectorForm::doStartup(const std::string &path) {
-#TVPMainScene::GetInstance()->startupFrom(path)
-
-#b TVPMainScene::startupFrom
-
-#
-#void TVPMainFileSelectorForm::show() {
-#after ListDir
-#TVPMainScene::GetInstance()->scheduleOnce([this](float dt){
-#		//startup("/mnt/SDCARD/Data.xp3");
-#		TVPMainScene::GetInstance()->startupFrom("/mnt/SDCARD/Data.xp3");
-#	}, 0, "hellodemo");
-#
-
-clean:
-	$(RM) $(OBJS) $(KIRIKIROID2_OBJS) cocos2dx.a kirikiroid2
-
-debug2:
-	/home/wmt/work_trimui/aarch64-linux-gnu-7.5.0-linaro/bin/aarch64-linux-gnu-gdb
-
-#sudo apt install libncurses-dev	
-#sudo ln -s /usr/lib/x86_64-linux-gnu/libncurses.so /usr/lib/x86_64-linux-gnu/libncurses.so.5
-#gdb not usable
-
-
+clean :
+	$(RM) $(OBJS) $(KIRIKIROID2_OBJS) cocos2dx.a kirikiroid2 *.dSYM

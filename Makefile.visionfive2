@@ -1,110 +1,3 @@
-#sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev libturbojpeg0-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev
-
-#src/core/environ/Application.cpp
-#ExtractFileDir
-
-#FIXME:not used
-#libavfilter-dev libavutil-dev 
-
-#FIXME:not used
-#src/core/environ/XP3ArchiveRepack.cpp
-
-#not used libminizip-dev
-
-#src/core/sound/VorbisWaveDecoder.cpp
-#sudo apt install libvorbis-dev
-
-#src/core/base/7zArchive.cpp
-#-DMY_USE_LIB7ZIP=0
-
-#src/core/visual/LoadJXR.cpp
-#sudo apt install libjxr-dev
-#/usr/include/jxrlib/JXRGlue.h:99:13: error: expected initializer before ‘GUID_PKPixelFormatDontCare’
-#not solve
-#-DMY_USE_LIBJXR=0
-
-#src/core/visual/LoadWEBP.cpp
-#sudo apt install libwebp-dev
-
-#src/core/visual/LoadBPG.cpp
-#-DMY_USE_LIBBPG=0
-#libbpg-0.9.8.tar.gz
-
-#src/core/movie/ffmpeg/*.*
-#sudo apt install libavfilter-dev
-#-DMY_USE_FFMPEG=0
-
-#FIXME: remove ./src/core/external
-
-#(done) src/core/visual/ARM/tvpgl_arm.cpp
-#???? if 0
-
-#sudo apt install libboost-locale-dev
-#sudo apt install libfmt-dev
-#sudo apt install libavutil-dev
-
-#sudo apt install libopencv-dev
-#src/core/visual/ogl/RenderManager_ogl.cpp
-
-#src/core/visual/LoadJPEG.cpp
-#sudo apt install libturbojpeg0-dev
-
-#sudo apt install liblz4-dev
-#(done) src/core/visual/RenderManager.cpp
-#///usr/include/opencv4/opencv2/features2d.hpp:114:47: error: ‘KeyPoint’ was not declared in this scope; did you mean ‘Point’?
-#(TODO:)solve method, remove -I./src/core/external/opencv-2.4.13 and remove ./src/core/external/opencv-2.4.13/*.*
-##include <opencv2/opencv.hpp>
-##include <opencv2/features2d/features2d.hpp>
-
-#src/core/utils/minizip/ioapi.o
-#src/core/utils/minizip/unzip.o
-#(FIXME:)src/core/utils/minizip/zip.c
-
-#src/core/tjs2/*.tab.cpp, gen.zip
-
-#sudo apt install libspdlog-dev
-#sudo apt install libopenal-dev
-
-#(done) src/core/environ/android/AndroidUtils.cpp
-#src/core/environ/android/AndroidUtils add if defined(ANDROID)
-
-#(done) src/core/environ/cocos2d/MainScene.cpp
-#need keep <cocos2d-x/network/headers>
-
-#sudo apt install libgtk2.0-dev
-
-#src/core/environ/ui/SeletListForm.o->src/core/environ/ui/SelectListForm.o
-
-#(done)src/core/environ/ui/extension/ActionExtension.cpp
-#need keep <cocos2d-x/network/headers>
-
-#(done)src/core/environ/DumpSend.cpp
-#remove <cocos2d-x/network/HttpRequest.h/HttpClient.h>
-
-#sudo apt install libarchive-dev
-#(done) src/core/base/UtilStreams.cpp
-#remove unrarsrc-6.0.7.tar.gz dep
-
-#(done) src/core/base/ZIPArchive.cpp
-#(modified <cocos2d-x/external/unzip/ioapi.h> cause compiling failed)
-#static zlib_filefunc64_32_def zipfunc = {
-
-#FIXME:??? sudo apt install libminizip-dev
-#FIXME:(? not used cocos2d-x external unzip) 
-#./src/core/utils/minizip/zip.c
-
-#sudo apt install libopusfile-dev
-
-
-
-
-
-
-#xubuntu 20.04 64bit
-#sudo apt install libglew-dev libfreetype-dev libglfw3-dev
-
-#/usr/include/GLFW/glfw3.h
-
 #0: pc
 #1: miyoo a30 and rg28xx
 #2: trimui smart pro
@@ -180,7 +73,8 @@ CPPFLAGS += -DUSE_NO_GLFW=0 -DUSE_SHADER_PRECISION=1
 #if PC use OpenGLES to replace OpenGL, need USE_SHADER_PRECISION
 #cocos2d-x debug info [cocos2d: 0:1(1): error: No precision specified in this scope for type `mat4'
 CPPFLAGS += -DUSE_ROTATE90=0
-CPPFLAGS += -g3 -O0
+#CPPFLAGS += -g3 -O0 #unable to change to -g0 -O3 because R_RISCV_PCREL_HI20 link error if build bpi-f3 version
+CPPFLAGS += -g0 -Os
 endif
 
 CPPFLAGS += -DCC_ENABLE_BOX2D_INTEGRATION=0 
@@ -212,6 +106,18 @@ CPPFLAGS += -DMY_USE_PARTICLE3D=0
 CPPFLAGS += -DMY_USE_FFMPEG=0
 
 #CPPFLAGS += -DMY_USE_MINLIB=1
+
+CPPFLAGS += -DMY_USE_XMLUTIL_TOUNSIGNED_D=1   #./cocos2d-x-3.6/external/tinyxml2/tinyxml2.cpp
+#CPPFLAGS += -mcmodel=medany #tinyxml2.cpp:(.text+0x15e6): relocation truncated to fit: R_RISCV_PCREL_HI20 against `.LC4'
+#CPPFLAGS += -fPIC
+
+#VisionFive2 test time and speed
+CPPFLAGS += -DMY_USE_TIME_REPORT=1
+#VisionFive2 GLES+GLFW3 (hardware accelerated, not software renderer softpipe)
+CPPFLAGS += -DMY_USE_GLES_GLFW3=1
+#VisionFive2 font not shown, just bacause of vertex shader compile error, see CCGLProgram.cpp Cannot link invalid program
+CPPFLAGS += -DMY_USE_FONT_HIDE_BUG=1
+
 
 #see below
 CPPFLAGS2 := 
@@ -336,8 +242,11 @@ CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/include
 CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/include/webp
 CPPFLAGS += -I/home/wmt/work_a30/staging_dir/target/usr/include/freetype2
 else
-#xubuntu 20
-#sudo apt install libopusfile-dev libgtk2.0-dev libopencv-dev libglfw3-dev libpng-dev zlib1g-dev libjpeg-dev libfreetype-dev libbz2-dev
+
+#sudo apt install libpng-dev zlib1g-dev libjpeg-dev libfreetype-dev libbz2-dev
+#sudo apt remove libglfw3-dev
+CPPFLAGS += -Iexternal_visionfive2/include
+
 CPPFLAGS += -I/usr/include
 CPPFLAGS += -I/usr/include/webp
 CPPFLAGS += -I/usr/include/freetype2
@@ -382,15 +291,14 @@ LDFLAGS :=
 #LDFLAGS += -lcurl 
 #LDFLAGS += -lX11 
 
-LDFLAGS += -lfreetype 
-#-lbz2
+LDFLAGS += -lfreetype -lbz2
 #NOTE: -lbz2 is not necessary for PC xubuntu 20.04
 LDFLAGS += -lpthread 
 LDFLAGS += -lz 
 LDFLAGS += -ljpeg 
 LDFLAGS += -lpng 
 #LDFLAGS += -lGLESv2 -lEGL
-
+#-lEGL
 #kirikiroid2
 LDFLAGS += -latomic
 LDFLAGS += -lSDL2
@@ -421,6 +329,9 @@ LDFLAGS += -lboost_locale  #for boost::locale::conv::to_utf
 #/usr/lib/x86_64-linux-gnu/libboost_locale.a, need sudo apt install libboost-locale-dev
 
 
+#LDFLAGS += -mcmodel=medany #tinyxml2.cpp:(.text+0x15e6): relocation truncated to fit: R_RISCV_PCREL_HI20 against `.LC4'
+#LDFLAGS += -fPIC
+
 ifeq ($(MIYOO),3)
 #trimui brick replace glfw3 with EGL
 LDFLAGS += -lIMGegl -lsrv_um -lusc -lglslcompiler -L/home/wmt/work_trimui/usr/lib
@@ -431,13 +342,13 @@ else ifeq ($(MIYOO),1)
 #miyoo a30 replace glfw3 with EGL
 LDFLAGS += -L/home/wmt/work_a30/staging_dir/target/usr/lib
 else
-#xubuntu 16, need glfw3 and EGL
-#sudo apt install libglfw3-dev libpng-dev zlib1g-dev libjpeg-dev libfreetype-dev libbz2-dev
-LDFLAGS += -lglfw #cocos2dx/platform/linux/CCEGLView.cpp
+LDFLAGS += -lGLESv2_PVR_MESA -lEGL
+#-lsrv_um -lusc -lglslcompiler
 
-#Xubuntu 20.04 PC version
-#sudo apt install libglew-dev
-LDFLAGS += -lGLEW -lGLU -lGL
+#if show 'Please upgrade the driver' and glGetString(GL_VERSION) is '(null)', please build and like self glfw3 static library instead of glfw3 shared library
+#NOTE:don't use system's glfw3 shared library
+#visionfive2 need to be linked to glfw3 static library (cmake it by yourself)
+LDFLAGS += external_visionfive2/lib/libglfw3.a -lm #cocos2dx/platform/linux/CCEGLView.cpp
 endif
 
 
