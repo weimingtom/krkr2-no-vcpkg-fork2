@@ -8,7 +8,9 @@
 #include <2d/CCLayer.h>
 #include <renderer/CCGLProgram.h>
 
+#if !MY_USE_MINLIB
 #include <spdlog/spdlog.h>
+#endif
 namespace Csd {
 #define LOGGER spdlog::get("core")
 
@@ -981,17 +983,29 @@ namespace Csd {
     }
 
     static Widget *createMediaPlayerNavi() {
+#if !MY_USE_MINLIB	
         LOGGER->warn("createMediaPlayerNaviLayer");
+#else
+		fprintf(stderr, "%s\n", "createMediaPlayerNaviLayer");
+#endif		
         return nullptr;
     }
 
     static Widget *createMediaPlayerBody() {
+#if !MY_USE_MINLIB	
         LOGGER->warn("createMediaPlayerBodyLayer");
+#else
+		fprintf(stderr, "%s\n", "createMediaPlayerBodyLayer");
+#endif				
         return nullptr;
     }
 
     static Widget *createMediaPlayerFoot() {
+#if !MY_USE_MINLIB	
         LOGGER->warn("createMediaPlayerFootLayer");
+#else
+		fprintf(stderr, "%s\n", "createMediaPlayerFootLayer");
+#endif		
         return nullptr;
     }
 
@@ -1063,7 +1077,11 @@ namespace Csd {
     }
 
     static Widget *createWinMgrOverlay() {
+#if !MY_USE_MINLIB		
         LOGGER->warn("createWinMgrOverlayLayer");
+#else
+		fprintf(stderr, "%s\n", "createWinMgrOverlayLayer");
+#endif
         return nullptr;
     }
     /**

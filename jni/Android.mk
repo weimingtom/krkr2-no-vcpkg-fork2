@@ -672,7 +672,7 @@ LOCAL_SRC_FILES += ../src/core/base/ZIPArchive.cpp
 LOCAL_SRC_FILES += ../src/core/base/impl/EventImpl.cpp
 LOCAL_SRC_FILES += ../src/core/base/impl/FileSelector.cpp
 LOCAL_SRC_FILES += ../src/core/base/impl/NativeEventQueue.cpp
-LOCAL_SRC_FILES += ../src/core/base/impl/PluginImpl.cpp
+LOCAL_SRC_FILES += ../src/core/plugin/PluginImpl.cpp
 LOCAL_SRC_FILES += ../src/core/base/impl/ScriptMgnImpl.cpp
 LOCAL_SRC_FILES += ../src/core/base/impl/StorageImpl.cpp
 LOCAL_SRC_FILES += ../src/core/base/impl/SysInitImpl.cpp
@@ -711,14 +711,12 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../Classes \
 					$(LOCAL_PATH)/../src/core/tjs2 \
 					$(LOCAL_PATH)/../src/core/base \
 					$(LOCAL_PATH)/../src/core/visual \
-					$(LOCAL_PATH)/../src/core/visual/win32 \
+					$(LOCAL_PATH)/../src/core/visual/impl \
 					$(LOCAL_PATH)/../src/core/sound \
 					$(LOCAL_PATH)/../src/core/sound/win32 \
 					$(LOCAL_PATH)/../src/core/utils \
 					$(LOCAL_PATH)/../src/plugins \
-					$(LOCAL_PATH)/../src/core/base/win32 \
-					$(LOCAL_PATH)/../src/core/msg \
-					$(LOCAL_PATH)/../src/core/msg/win32 \
+					$(LOCAL_PATH)/../src/core/base/impl \
 					$(LOCAL_PATH)/../src/core/utils/win32 \
 					$(LOCAL_PATH)/../src/core/environ/win32 \
 					$(LOCAL_PATH)/../src/core/extension \
@@ -731,8 +729,10 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/../Classes \
 					$(LOCAL_PATH)/../src/core/external/freetype-2.5.0.1/include \
 					$(LOCAL_PATH)/../src/core/external/SDL2-2.0.10/include \
 					$(LOCAL_PATH)/../src/core/external/libogg-1.1.3/include \
-					$(LOCAL_PATH)/../src/core/external/libvorbis-1.2.0/include
-
+					$(LOCAL_PATH)/../src/core/external/libvorbis-1.2.0/include \
+					$(LOCAL_PATH)/../src/core/plugin \
+					$(LOCAL_PATH)/../src/core/common \
+					$(LOCAL_PATH)/../src/core/movie
 					
 
 

@@ -145,11 +145,22 @@ extern ttstr TVPReadAboutStringFromResource();
 
 ttstr TVPGetAboutString() {
     TVPGetVersion();
+#if !MY_USE_MINLIB
     ttstr verstr{ fmt::format("{}.{}.{}.{}", TVPVersionMajor, TVPVersionMinor,
                               TVPVersionRelease, TVPVersionBuild) };
 
     ttstr tjsverstr{ fmt::format("{}.{}.{}", TJSVersionMajor, TJSVersionMinor,
                                  TJSVersionRelease) };
+#else
+	tjs_char verstr[100];
+	swprintf((wchar_t *)verstr, sizeof(verstr)/sizeof(tjs_char), L"%d.%d.%d.%d",
+		TVPVersionMajor, TVPVersionMinor,
+		TVPVersionRelease, TVPVersionBuild);
+
+	tjs_char tjsverstr[100];
+	swprintf((wchar_t *)tjsverstr, sizeof(tjsverstr)/sizeof(tjs_char), L"%d.%d.%d",
+		TJSVersionMajor, TJSVersionMinor, TJSVersionRelease);
+#endif
 
     return TVPFormatMessage(TVPReadAboutStringFromResource().c_str(), verstr,
                             tjsverstr) +
@@ -159,11 +170,22 @@ ttstr TVPGetAboutString() {
 //---------------------------------------------------------------------------
 ttstr TVPGetVersionInformation() {
     TVPGetVersion();
+#if !MY_USE_MINLIB
     ttstr verstr{ fmt::format("{}.{}.{}.{}", TVPVersionMajor, TVPVersionMinor,
                               TVPVersionRelease, TVPVersionBuild) };
 
     ttstr tjsverstr{ fmt::format("{}.{}.{}", TJSVersionMajor, TJSVersionMinor,
                                  TJSVersionRelease) };
+#else
+	tjs_char verstr[100];
+	swprintf((wchar_t *)verstr, sizeof(verstr)/sizeof(tjs_char), L"%d.%d.%d.%d",
+		TVPVersionMajor, TVPVersionMinor,
+		TVPVersionRelease, TVPVersionBuild);
+
+	tjs_char tjsverstr[100];
+	swprintf((wchar_t *)tjsverstr, sizeof(tjsverstr)/sizeof(tjs_char), L"%d.%d.%d",
+		TJSVersionMajor, TJSVersionMinor, TJSVersionRelease);
+#endif
 
     ttstr version = TVPFormatMessage(TVPVersionInformation, verstr, tjsverstr);
     ttstr str = ApplicationSpecialPath::ReplaceStringAll(
@@ -176,8 +198,15 @@ ttstr TVPGetVersionInformation() {
 //---------------------------------------------------------------------------
 ttstr TVPGetVersionString() {
     TVPGetVersion();
+#if !MY_USE_MINLIB
     ttstr verstr{ fmt::format("{}.{}.{}.{}", TVPVersionMajor, TVPVersionMinor,
                               TVPVersionRelease, TVPVersionBuild) };
+#else
+	tjs_char verstr[100];
+	swprintf((wchar_t *)verstr, sizeof(verstr)/sizeof(tjs_char), L"%d.%d.%d.%d",
+		TVPVersionMajor, TVPVersionMinor,
+		TVPVersionRelease, TVPVersionBuild);
+#endif
     return verstr;
 }
 //---------------------------------------------------------------------------

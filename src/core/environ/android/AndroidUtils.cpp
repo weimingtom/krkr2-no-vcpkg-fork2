@@ -257,7 +257,7 @@ public:
     }
     bool GetData(std::vector<unsigned char> &buff, const char *filename) {
         bool ret = false;
-        if(unzLocateFile(uf, filename, nullptr) == UNZ_OK) {
+        if(unzLocateFile(uf, filename, 0 /*nullptr*/) == UNZ_OK) {
             int result = unzOpenCurrentFile(uf);
             if(result == UNZ_OK) {
                 unz_file_info info;

@@ -17,7 +17,9 @@
 #include <cmath>
 #include <cstdlib>
 #include <cmath>
+#if !MY_USE_MINLIB
 #include <spdlog/spdlog.h>
+#endif
 
 #include "tjsArray.h"
 #include "LayerIntf.h"

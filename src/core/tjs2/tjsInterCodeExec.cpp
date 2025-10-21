@@ -27,8 +27,10 @@
 #include <mutex>
 
 #include <thread>
+#if !MY_USE_MINLIB
 #include <fmt/format.h>
 #include <spdlog/spdlog.h>
+#endif
 
 #if defined(__MINGW32__)
 #undef GetMessage
@@ -785,10 +787,17 @@ namespace TJS {
     tTJSInterCodeContext::DisplayExceptionGeneratedCode(tjs_int codepos,
                                                         const tTJSVariant *ra) {
         tTJS *tjs = Block->GetTJS();
+#if MY_USE_MINLIB
+        ttstr info(TJS_W(
+			"==== An exception occured at ") + 
+			GetPositionDescriptionString(codepos) + TJS_W(", VM ip = ") +
+            ttstr(codepos) + TJS_W(" ==== "));
+#else	
         ttstr info{ fmt::format(
             "==== An exception occurred at {}, VM ip = {} ==== ",
             GetPositionDescriptionString(codepos).AsNarrowStdString(),
             codepos) };
+#endif			
         tjs_int info_len = info.GetLen();
 
         tjs->OutputToConsole(info.c_str());
@@ -1312,21 +1321,33 @@ namespace TJS {
             throw;
         } catch(eTJS &e) {
             if(tryCatch) {
+#if MY_USE_MINLIB
+				fprintf(stderr, "%s\n", e.GetMessage().AsStdString().c_str());
+#else			
                 spdlog::get("tjs2")->debug(e.GetMessage().AsStdString());
+#endif				
             } else {
                 DisplayExceptionGeneratedCode(codesave - CodeArea, ra_org);
             }			
             TJS_eTJSScriptError(e.GetMessage(), this, codesave - CodeArea);
         } catch(exception &e) {
             if(tryCatch) {
+#if MY_USE_MINLIB
+				fprintf(stderr, "%s\n", e.what());
+#else				
                 spdlog::get("tjs2")->debug(e.what());
+#endif
             } else {
                 DisplayExceptionGeneratedCode(codesave - CodeArea, ra_org);
             }
             TJS_eTJSScriptError(e.what(), this, codesave - CodeArea);
         } catch(const char *text) {
             if(tryCatch) {
+#if MY_USE_MINLIB
+				fprintf(stderr, "%s\n", text);
+#else			
                 spdlog::get("tjs2")->debug(text);
+#endif				
             } else {
                 DisplayExceptionGeneratedCode(codesave - CodeArea, ra_org);
             }

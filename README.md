@@ -13,6 +13,7 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * Click file manager UI right column's top bar button to show popup path menu, then click items not well  
 * Msys2 console output Chinese characters not good
 * RPI4 running failed, SIGBUS
+* ? MY_USE_MINLIB swprintf not good for Android ???
 
 ## TODO
 * Some code is changed to mine (see readme_android.txt, like core/environ/android/AndroidUtils.cpp and core/sound/win32/WaveMixer.cpp), not original code, need to be synchronized  
@@ -22,6 +23,8 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * Remove console.bat NDK_MODULE_PATH
 * Use OpenAL (?) for audio output instead of SDL2
 * Android version needs 64bit testing
+* Make swprintf to ttstr info(TJS_W(.. + ..., see tjsInterCodeExec.cpp::DisplayExceptionGeneratedCode
+* encoding = "ASCII";
 
 ## Recommended Development Environment for good audio music output 
 * Xubuntu 20.04 desktop amd64, in VMWare or VirtualBox  
@@ -85,4 +88,14 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * $ sudo apt install libglew-dev libfreetype-dev libglfw3-dev libsdl2-dev libvorbis-dev libwebp-dev  libboost-locale-dev libfmt-dev libopencv-dev liblz4-dev libspdlog-dev libopenal-dev libgtk2.0-dev libarchive-dev libopusfile-dev libminizip-dev libjpeg-dev libuchardet-dev
 * $ make clean && make -j4 && make test
 * $ mkdir build && cd build && cmake .. && make -j4 && ./bin/krkr2/krkr2 && cd ..
+
+## (Running failed, fail to open xp3 file) For Android NDK r25, armeabi-v7a, in Android 32bit
+* Double click console.bat
+* set PATH=D:\home\soft\android_studio_sdk\ndk\25.2.9519653;%PATH%
+* set NDK_MODULE_PATH=%CD%\cocos;%CD%\external;%CD%\extensions;%CD%
+* ndk-build -j8
+* copy libs\armeabi-v7a\libSDL2.so project\androidstudio\app\libs\armeabi-v7a\libSDL2.so
+* copy libs\armeabi-v7a\libcpp_empty_test.so project\androidstudio\app\libs\armeabi-v7a\libcpp_empty_test.so
+* Open project\androidstudio with Android Studio
+
 

@@ -1,4 +1,6 @@
+#if !MY_USE_MINLIB
 #include <spdlog/spdlog.h>
+#endif
 #include "AppDelegate.h"
 
 #include "MainScene.h"
@@ -31,7 +33,11 @@ void TVPAppDelegate::applicationDidEnterBackground() {
 bool TVPAppDelegate::applicationDidFinishLaunching() {
     SDL_SetMainReady();
     TVPMainThreadID = std::this_thread::get_id();
+#if !MY_USE_MINLIB	
     spdlog::debug("App Finish Launching");
+#else
+	fprintf(stderr, "%s\n", "App Finish Launching");
+#endif	
     // initialize director
     auto director = cocos2d::Director::getInstance();
     auto glview = director->getOpenGLView();

@@ -1991,11 +1991,18 @@ void tTJSNI_WaveSoundBuffer::Invalidate() {
 //---------------------------------------------------------------------------
 void tTJSNI_WaveSoundBuffer::ThrowSoundBufferException(const ttstr &reason) {
 
+#if !MY_USE_MINLIB
     TVPThrowExceptionMessage(
         TVPCannotCreateDSSecondaryBuffer, reason,
         ttstr{ fmt::sprintf("frequency=%d/channels=%d/bits=%d",
                             InputFormat.SamplesPerSec, InputFormat.Channels,
                             InputFormat.BitsPerSample) });
+#else
+	TVPThrowExceptionMessage(TVPCannotCreateDSSecondaryBuffer,
+		reason, ttstr().printf("frequency=%d/channels=%d/bits=%d",
+		InputFormat.SamplesPerSec, InputFormat.Channels,
+		InputFormat.BitsPerSample));
+#endif
 }
 
 //---------------------------------------------------------------------------

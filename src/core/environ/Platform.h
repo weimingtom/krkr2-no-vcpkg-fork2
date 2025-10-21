@@ -2,7 +2,9 @@
 #include "tjsCommHead.h"
 #include <string>
 #include <vector>
+#if !MY_USE_MINLIB
 #include <spdlog/spdlog.h>
+#endif
 
 struct TVPMemoryInfo { // all in kB
     unsigned long MemTotal;

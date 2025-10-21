@@ -8,6 +8,7 @@
 //---------------------------------------------------------------------------
 // Script Block Management
 //---------------------------------------------------------------------------
+#include <unordered_map> //for std::unordered_map
 #include "tjsCommHead.h"
 
 #include "tjsScriptBlock.h"

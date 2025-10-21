@@ -34,7 +34,16 @@
 #include "TickCount.h"
 #include "combase.h"
 
+
+#if !MY_USE_MINLIB
 #include "spdlog/spdlog.h"
+#endif
+
+#if MY_USE_MINLIB
+#include <fcntl.h>
+#include <unistd.h> //read, close, lseek64, write
+#endif
+
 
 #if defined(WIN32) && !defined(__MINGW32__)
 #include <io.h>
@@ -630,7 +639,11 @@ int TVPCheckArchive(const ttstr &localname) {
             }
         }
     } catch(eTJSError e) {
+#if !MY_USE_MINLIB	
         spdlog::error("Error opening archive {}", localname.toString());
+#else
+        fprintf(stderr, "Error opening archive %s\n", localname.toString().c_str());
+#endif
     }
     if(arc) {
         delete arc;

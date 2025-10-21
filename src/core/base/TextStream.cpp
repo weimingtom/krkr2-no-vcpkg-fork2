@@ -1,12 +1,16 @@
 #include <cstdint>
+#if !MY_USE_MINLIB
 #include <uchardet.h>
+#endif
 #include <zlib.h>
 #include <optional>
 
 #include "TextStream.h"
 
+#if !MY_USE_MINLIB
 #include <opencv2/core/hal/interface.h>
 #include <spdlog/spdlog.h>
+#endif
 
 #include "MsgIntf.h"
 #include "UtilStreams.h"
@@ -44,6 +48,7 @@ std::string checkTextEncoding(const void *buf, size_t size,
         bomSize = 4;
         encoding = "UTF-32BE";
     } else {
+#if !MY_USE_MINLIB	
         // ---------- 普通文本：用 uchardet 检测编码 ----------
         uchardet_t ud = uchardet_new();
         uchardet_handle_data(ud, reinterpret_cast<const char *>(raw), size);
@@ -55,6 +60,9 @@ std::string checkTextEncoding(const void *buf, size_t size,
         } else if(encoding == "WINDOWS-1252") {
             encoding = "ASCII";
         }
+#else
+            encoding = "ASCII";
+#endif		
     }
 
     return encoding;
@@ -144,13 +152,14 @@ public:
             _buffer.assign(raw.data(), raw.data() + size);
             return;
         }
-
+#if !MY_USE_MINLIB
         if(encoding == "UTF-8") {
             _buffer = boost::locale::conv::utf_to_utf<char16_t>(
                 reinterpret_cast<const char *>(raw.data()),
                 reinterpret_cast<const char *>(raw.data() + size));
             return;
         }
+#endif		
 
         if(encoding == "UTF-16" || encoding == "UTF-16LE" ||
            encoding == "UTF-16BE") {
@@ -171,6 +180,7 @@ public:
             return;
         }
 
+#if !MY_USE_MINLIB
         if(encoding == "UTF-32" || encoding == "UTF-32LE" ||
            encoding == "UTF-32BE") {
             _buffer = boost::locale::conv::utf_to_utf<char16_t>(
@@ -190,6 +200,7 @@ public:
             spdlog::error(e.what());
             TVPThrowExceptionMessage(TJSNarrowToWideConversionError);
         }
+#endif		
     }
 
     ~tTVPTextReadStream() override = default;

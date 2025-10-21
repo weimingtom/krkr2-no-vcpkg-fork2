@@ -14,6 +14,7 @@
 #include "ncb_invoke.hpp"
 #include <map>
 #include <list>
+#include <set> //for std::set
 
 inline std::set<ttstr> TVPRegisteredPlugins;
 

@@ -12,7 +12,9 @@
 #include <algorithm>
 #include <functional>
 
+#if !MY_USE_MINLIB
 #include <spdlog/spdlog.h>
+#endif
 
 #include "tjsCommHead.h"
 
@@ -52,9 +54,17 @@ void TVPLoadPlugin(const ttstr &name) {
         pluginName = "motionplayer.dll";
 
     if(TVPLoadInternalPlugin(pluginName)) {
+#if !MY_USE_MINLIB
         spdlog::debug("Loading Plugin: {} Success", name.AsStdString());
+#else
+		fprintf(stderr, "Loading Plugin: %s Success\n", name.AsStdString().c_str());
+#endif
     } else {
+#if !MY_USE_MINLIB
         spdlog::error("Loading Plugin: {} Failed", name.AsStdString());
+#else
+		fprintf(stderr, "Loading Plugin: %s Failed\n", name.AsStdString().c_str());
+#endif
     }
 }
 

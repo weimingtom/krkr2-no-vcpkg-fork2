@@ -222,7 +222,11 @@ void TVPInitFontNames() {
             auto data = cocos2d::FileUtils::getInstance()->getDataFromFile(
                 "NotoSansCJK-Regular.ttc");
             if(data.isNull()) {
+#if !MY_USE_MINLIB			
                 spdlog::critical("can't found internal font file!");
+#else
+                fprintf(stderr, "can't found internal font file!\n");
+#endif				
                 exit(-1);
             }
             if(TVPInternalEnumFonts(

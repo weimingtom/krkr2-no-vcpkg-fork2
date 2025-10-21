@@ -192,9 +192,13 @@ bool TVPMainFileSelectorForm::checkStartupTjsScript(const std::string &path) {
 void TVPMainFileSelectorForm::onCellClicked(int idx) {
     FileInfo info = CurrentDirList[idx];
     TVPBaseFileSelectorForm::onCellClicked(idx);
-
+#if !MY_USE_MINLIB
     spdlog::debug("Selected file: {}, FullPath: {}", info.NameForDisplay,
                   info.FullPath);
+#else
+	fprintf(stderr, "Selected file: %s, FullPath: %s", info.NameForDisplay.c_str(),
+	              info.FullPath.c_str());
+#endif
     runFromPath(info.FullPath);
 }
 

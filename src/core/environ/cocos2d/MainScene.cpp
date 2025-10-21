@@ -2636,12 +2636,20 @@ void TVPConsoleLog(const ttstr &l, bool important) {
         _consoleWin->addLine(l, important ? Color3B::YELLOW : Color3B::GRAY);
         TVPDrawSceneOnce(100); // force update in 10fps
     }
+#if !MY_USE_MINLIB
     spdlog::get("tjs2")->info("{}", l.AsStdString());
+#else
+	fprintf(stderr, "%s\n", l.AsStdString().c_str());
+#endif
 }
 
 namespace TJS {
     void TVPConsoleLog(const ttstr &str) {
+#if !MY_USE_MINLIB
         spdlog::get("tjs2")->info("{}", str.AsStdString());
+#else
+		fprintf(stderr, "%s\n", str.AsStdString().c_str());
+#endif		
     }
 
 #if 0
@@ -2655,10 +2663,21 @@ namespace TJS {
         spdlog::get("tjs2")->info(fmt, std::forward<Args>(args)...);
     }
 #else
+#if !MY_USE_MINLIB	
     template <typename... Args>    
     void TVPConsoleLog(std::string_view fmt, Args &&...args) {
         spdlog::get("tjs2")->info(fmt, std::forward<Args>(args)...);
     }
+#else
+    void TVPConsoleLog(const tjs_nchar *format, ...) {
+        va_list args;
+        va_start(args, format);
+        char buf[MAX_LOG_LENGTH];
+        vsnprintf(buf, MAX_LOG_LENGTH - 3, format, args);
+        cocos2d::log("%s", buf);
+        va_end(args);
+    }
+#endif	
 #endif       
 } // namespace TJS
 

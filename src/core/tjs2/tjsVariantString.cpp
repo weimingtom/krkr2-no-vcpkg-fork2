@@ -882,7 +882,11 @@ namespace TJS {
                     // integers
                     if(width + prec > 900)
                         goto error; // too long
+#if !MY_USE_MINLIB		
                     ttstr buf;
+#else
+					tjs_char buf[1024];
+#endif
                     // tjs_char *p;
                     tjs_char fmt[70];
                     tjs_uint fmtlen = (tjs_uint)(f - fst);
@@ -905,8 +909,12 @@ namespace TJS {
                             TJS_eTJSVariantError(TJSBadParamCount);
                         tTVInteger integer = (params[in++])->AsInteger();
                         // FIXME:
+#if !MY_USE_MINLIB						
                         buf = { fmt::sprintf(ttstr{ fmt }.AsNarrowStdString(),
                                              integer) };
+#else
+						swprintf((wchar_t *)buf, sizeof(buf)/sizeof(tjs_char), (const wchar_t *)ttstr{ fmt }.toWString().c_str(), integer);
+#endif
                     } else if((!width_ind && prec_ind) ||
                               (width_ind && !prec_ind)) {
                         if(in >= numparams)
@@ -920,8 +928,12 @@ namespace TJS {
                             TJS_eTJSVariantError(TJSBadParamCount);
                         tTVInteger integer = (params[in++])->AsInteger();
                         // FIXME:
+#if !MY_USE_MINLIB						
                         buf = { fmt::sprintf(ttstr{ fmt }.AsNarrowStdString(),
                                              ind[0], integer) };
+#else
+						swprintf((wchar_t *)buf, sizeof(buf)/sizeof(tjs_char), (const wchar_t *)ttstr{ fmt }.toWString().c_str(), ind[0], integer);
+#endif											 
                     } else {
                         if(in >= numparams)
                             TJS_eTJSVariantError(TJSBadParamCount);
@@ -935,11 +947,19 @@ namespace TJS {
                             TJS_eTJSVariantError(TJSBadParamCount);
                         tTVInteger integer = (params[in++])->AsInteger();
                         // FIXME:
+#if !MY_USE_MINLIB						
                         buf = { fmt::sprintf(ttstr{ fmt }.AsNarrowStdString(),
                                              ind[0], ind[1], integer) };
+#else
+						swprintf((wchar_t *)buf, sizeof(buf)/sizeof(tjs_char), (const wchar_t *)ttstr{ fmt }.toWString().c_str(), ind[0], ind[1], integer);
+#endif												 
                     }
 
+#if !MY_USE_MINLIB	
                     tjs_uint size = buf.length();
+#else
+					tjs_uint size = (tjs_uint)TJS_strlen(buf);
+#endif
                     tjs_uint inc_size;
                     if(s + size > allocsize) {
                         ret->AppendBuffer(inc_size = s + size - allocsize +
@@ -948,7 +968,11 @@ namespace TJS {
                             ret->operator const tjs_char *());
                         allocsize += inc_size;
                     }
+#if !MY_USE_MINLIB	
                     TJS_strcpy(o + s, buf.c_str());
+#else
+					TJS_strcpy(o+s, buf);
+#endif
                     s += size;
 
                     f++;
@@ -962,7 +986,11 @@ namespace TJS {
                     // reals
                     if(width + prec > 900)
                         goto error; // too long
+#if !MY_USE_MINLIB
                     ttstr buf{};
+#else
+					tjs_char buf[1024];
+#endif
                     tjs_char fmt[70];
                     tjs_uint fmtlen = (tjs_uint)(f - fst);
                     if(fmtlen > 67)
@@ -981,8 +1009,12 @@ namespace TJS {
                             TJS_eTJSVariantError(TJSBadParamCount);
                         tTVReal real = (params[in++])->AsReal();
                         // FIXME:
+#if !MY_USE_MINLIB						
                         buf = { fmt::sprintf(ttstr{ fmt }.AsNarrowStdString(),
                                              real) };
+#else
+						swprintf((wchar_t *)buf, sizeof(buf)/sizeof(tjs_char), (const wchar_t *)ttstr{ fmt }.toWString().c_str(), real);
+#endif	
 
                     } else if((!width_ind && prec_ind) ||
                               (width_ind && !prec_ind)) {
@@ -997,8 +1029,12 @@ namespace TJS {
                             TJS_eTJSVariantError(TJSBadParamCount);
                         tTVReal real = (params[in++])->AsReal();
                         // FIXME:
+#if !MY_USE_MINLIB						
                         buf = { fmt::sprintf(ttstr{ fmt }.AsNarrowStdString(),
                                              ind[0], real) };
+#else
+						swprintf((wchar_t *)buf, sizeof(buf)/sizeof(tjs_char), (const wchar_t *)ttstr{ fmt }.toWString().c_str(), ind[0], real);
+#endif												 
                     } else {
                         if(in >= numparams)
                             TJS_eTJSVariantError(TJSBadParamCount);
@@ -1012,11 +1048,19 @@ namespace TJS {
                             TJS_eTJSVariantError(TJSBadParamCount);
                         tTVReal real = (params[in++])->AsReal();
                         // FIXME:
+#if !MY_USE_MINLIB							
                         buf = { fmt::sprintf(ttstr{ fmt }.AsNarrowStdString(),
                                              ind[0], ind[1], real) };
+#else
+						swprintf((wchar_t *)buf, sizeof(buf)/sizeof(tjs_char), (const wchar_t *)ttstr{ fmt }.toWString().c_str(), ind[0], ind[1], real);
+#endif	
                     }
 
+#if !MY_USE_MINLIB
                     tjs_uint size = buf.length();
+#else
+					tjs_uint size = (tjs_uint)TJS_strlen(buf);
+#endif
                     tjs_uint inc_size;
                     if(s + size > allocsize) {
                         ret->AppendBuffer(inc_size = s + size - allocsize +
@@ -1025,7 +1069,11 @@ namespace TJS {
                             ret->operator const tjs_char *());
                         allocsize += inc_size;
                     }
+#if !MY_USE_MINLIB
                     TJS_strcpy(o + s, buf.c_str());
+#else
+					TJS_strcpy(o+s, buf);
+#endif					
                     s += size;
                     f++;
                     continue;

@@ -490,7 +490,7 @@ public:
         return origTex;
     }
 };
-
+#if !MY_USE_MINLIB
 class tTVPSoftwareTexture2D_half : public tTVPSoftwareTexture2D_compress {
     std::vector<const tjs_uint8 *> _scanline;
     std::vector<tjs_uint8 *> _scanlineData;
@@ -820,6 +820,7 @@ public:
         return blk.Height;
     }
 };
+#endif
 
 class tTVPSoftwareTexture2D : public tTVPSoftwareTexture2D_static {
     tTVPSoftwareTexture2D(tTVPBitmap *bmp) :
@@ -2911,6 +2912,7 @@ public:
         StretchType(stNearest), tempTexture(nullptr), img_convert_ctx(nullptr),
         _drawCount(0) {
         _createStaticTexture2D = tTVPSoftwareTexture2D::Create;
+#if !MY_USE_MINLIB		
         std::string compTexMethod =
             IndividualConfigManager::GetInstance()->GetValue<std::string>(
                 "software_compress_tex", "none");
@@ -2920,6 +2922,13 @@ public:
             _createStaticTexture2D = tTVPSoftwareTexture2D_lz4::Create;
         else if(compTexMethod == "lz4+tlg5")
             _createStaticTexture2D = tTVPSoftwareTexture2D_lz4_tlg5::Create;
+#else
+#if defined(_MSC_VER)
+		OutputDebugStringA("====================> _createStaticTexture2D not set \n");
+#else
+		CCLOG("====================> _createStaticTexture2D not set ");
+#endif
+#endif
 
         Register_1();
         Register_2();

@@ -1120,10 +1120,16 @@ void tTVPComplexRect::DumpChain() {
     ttstr str;
     tIterator it = GetIterator();
     while(it.Step()) {
+#if !MY_USE_MINLIB
         str +=
             { fmt::format("{} ({}) {} : ", static_cast<void *>(it.Get().Prev),
                           static_cast<const void *>(&(it.Get())),
                           static_cast<void *>(it.Get().Next)) };
+#else
+		tjs_char tmp[200];
+	    swprintf((wchar_t *)tmp, 200, L"%p (%p) %p : ", it.Get().Prev, &(it.Get()), it.Get().Next);
+		str += tmp;
+#endif						  
     }
     OutputDebugString(str.c_str());
 }

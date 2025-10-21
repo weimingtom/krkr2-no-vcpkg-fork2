@@ -951,7 +951,11 @@ void TVPExecuteStartupScript() {
     try {
 
         ttstr place(TVPSearchPlacedPath(TVPStartupScriptName));
+#if !MY_USE_MINLIB		
         spdlog::info("Loading startup script: {}", place.AsStdString());
+#else
+		fprintf(stderr, "Loading startup script: %s\n", place.AsStdString().c_str());
+#endif
         TVPStartupSuccess = false;
         try {
             iTJSTextReadStream *stream = TVPCreateTextStreamForRead(place, "");
@@ -969,7 +973,11 @@ void TVPExecuteStartupScript() {
             TVPExecuteStorage(TJS_W("system/Initialize.tjs"));
             TVPStartupSuccess = true;
         }
+#if !MY_USE_MINLIB
         spdlog::info("Startup script ended.");
+#else
+		fprintf(stderr, "Startup script ended.\n");
+#endif
         try {
             ttstr patch = TVPGetAppPath() + "AfterStartup.tjs";
             if(TVPIsExistentStorageNoSearch(patch))
