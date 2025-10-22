@@ -64,7 +64,7 @@ public abstract class Cocos2dxActivity extends SDLActivity/*Activity*/ implement
     // ===========================================================
     
     private Cocos2dxGLSurfaceView mGLSurfaceView = null;
-    private int[] mGLContextAttrs = null;
+    public/*private*/ int[] mGLContextAttrs = null;
     private Cocos2dxHandler mHandler = null;   
     private static Cocos2dxActivity sContext = null;
     private Cocos2dxVideoHelper mVideoHelper = null;
@@ -254,7 +254,7 @@ public abstract class Cocos2dxActivity extends SDLActivity/*Activity*/ implement
     }
 
 
-    protected ResizeLayout mFrameLayout = null;
+    public/*protected*/ ResizeLayout mFrameLayout = null;
     // ===========================================================
     // Methods
     // ===========================================================
@@ -382,7 +382,7 @@ public abstract class Cocos2dxActivity extends SDLActivity/*Activity*/ implement
     // Inner and Anonymous Classes
     // ===========================================================
 
-    private class Cocos2dxEGLConfigChooser implements GLSurfaceView.EGLConfigChooser
+    public/*private*/ class Cocos2dxEGLConfigChooser implements GLSurfaceView.EGLConfigChooser
     {
         private int[] mConfigAttributes;
         private  final int EGL_OPENGL_ES2_BIT = 0x04;

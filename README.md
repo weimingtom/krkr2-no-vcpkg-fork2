@@ -94,13 +94,13 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * $ make clean && make -j4 && make test
 * $ mkdir build && cd build && cmake .. && make -j4 && ./bin/krkr2/krkr2 && cd ..
 
-## (Running failed, fail to open xp3 file) For Android NDK r25, armeabi-v7a, in Android 32bit
+## (To be changed to MainActivity) For Android NDK r25, armeabi-v7a, in Android 32bit
 * Double click console.bat
 * set PATH=D:\home\soft\android_studio_sdk\ndk\25.2.9519653;%PATH%
 * set NDK_MODULE_PATH=%CD%\cocos;%CD%\external;%CD%\extensions;%CD%
 * ndk-build -j8
 * copy libs\armeabi-v7a\libSDL2.so project\androidstudio\app\libs\armeabi-v7a\libSDL2.so
 * copy libs\armeabi-v7a\libcpp_empty_test.so project\androidstudio\app\libs\armeabi-v7a\libcpp_empty_test.so
-* Open project\androidstudio with Android Studio
+* Open project\androidstudio with Android Studio (My version is Dolphin 2021.3.1 Patch 1)
 
 
