@@ -28,6 +28,8 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * not sync Resources/ to project\android\assets and another assets
 * Remove TextStream.cpp's MY_USE_MINLIB work around code 
 * test android studio version
+* Start Android version with MainActivity instead of KR2Activity for requesting permissions
+* Sync SDL2 android version java and cpp code ???
 
 ## Recommended Development Environment for good audio music output 
 * Xubuntu 20.04 desktop amd64, in VMWare or VirtualBox  
