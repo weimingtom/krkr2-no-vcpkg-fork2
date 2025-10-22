@@ -412,7 +412,7 @@ LOCAL_MODULE := cpp_empty_test_shared
 
 LOCAL_MODULE_FILENAME := libcpp_empty_test
 
-LOCAL_SRC_FILES := main.cpp
+LOCAL_SRC_FILES := main.cpp krkr2_android.cpp
 
 #LOCAL_SRC_FILES += ../src/core/visual/ARM/tvpgl_arm.cpp
 

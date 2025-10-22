@@ -39,7 +39,8 @@ namespace {
 std::unique_ptr<AppDelegate> appDelegate;
 }
 
-void cocos_android_app_init(JNIEnv* env) {
+//not used, see krkr2_android.cpp:cocos_android_app_init()
+void cocos_android_app_init__(JNIEnv* env) {
     LOGD("cocos_android_app_init");
     appDelegate.reset(new AppDelegate());
 }
@@ -72,7 +73,8 @@ namespace {
 std::unique_ptr<TVPAppDelegate> appDelegate;
 }
 
-void cocos_android_app_init(JNIEnv* env) {
+//not used, see krkr2_android.cpp:cocos_android_app_init()
+void cocos_android_app_init__(JNIEnv* env) {
     LOGD("cocos_android_app_init");
 #if !MY_USE_MINLIB
     spdlog::set_level(spdlog::level::debug);

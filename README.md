@@ -24,7 +24,9 @@ https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466
 * Use OpenAL (?) for audio output instead of SDL2
 * Android version needs 64bit testing
 * Make swprintf to ttstr info(TJS_W(.. + ..., see tjsInterCodeExec.cpp::DisplayExceptionGeneratedCode
-* encoding = "ASCII";
+* encoding = "ASCII"; src\core\base\TextStream.cpp
+* not sync Resources/ to project\android\assets and another assets
+* Remove TextStream.cpp's MY_USE_MINLIB work around code 
 
 ## Recommended Development Environment for good audio music output 
 * Xubuntu 20.04 desktop amd64, in VMWare or VirtualBox  

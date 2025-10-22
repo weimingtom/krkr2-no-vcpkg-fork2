@@ -377,7 +377,7 @@ FileUtils::Status FileUtilsAndroid::getContents(const std::string& filename, Res
 
     AAsset* asset = AAssetManager_open(assetmanager, relativePath.data(), AASSET_MODE_UNKNOWN);
     if (nullptr == asset) {
-        LOGD("asset is nullptr");
+        LOGD("asset is nullptr: %s", filename.c_str());
         return FileUtils::Status::OpenFailed;
     }
 
