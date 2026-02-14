@@ -2,7 +2,7 @@
 [WIP and not recommended] The second fork of building krkr2 kirikiroid2 vcpkg version without vcpkg, with apt install instead,
 Code base:  
 https://github.com/2468785842/krkr2/tree/c08acbc134bbc26d62fc11b5c355efaed64d466b  
-**Different from 2468785842/krkr2, currently no windowEx.dll support, you can refer to 2468785842/krkr2 for windowEx.dll support**
+**Different from 2468785842/krkr2, currently no windowEx.dll support, you can refer to 2468785842/krkr2 for windowEx.dll support**  
 If you need the older code of 2468785842/krkr2,   
 see https://github.com/weimingtom/krkr2-no-vcpkg      
 
